@@ -1,5 +1,5 @@
 import React from "react";
-
+import ToDoItem from "./ToDoItem";
 
 //En el Hook itemList se guarda el estado o el contenido que se ingresa en el input
 //En el Hook tareas se almacenan los elementos de la lista
@@ -9,7 +9,7 @@ function App() {
   const [tareas, setTareas] = React.useState([]);
 
   ////Convertir los elementos de la lista en react components
-  const ListaFinal = tareas.map((tarea, index) => <li key={index}>{tarea}</li>);
+  const ListaFinal = tareas.map((tarea, index) => <ToDoItem item={tarea} />);
   function newItem(event) {
     setItemList(event.target.value);
   }

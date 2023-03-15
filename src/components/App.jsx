@@ -9,7 +9,10 @@ function App() {
   const [tareas, setTareas] = React.useState([]);
 
   ////Convertir los elementos de la lista en react components
-  const ListaFinal = tareas.map((tarea, index) => <ToDoItem item={tarea} />);
+  const ListaFinal = tareas.map((tarea, index) => (
+    <ToDoItem key={index} id={index} item={tarea} onChecked={deleteElement} />
+  ));
+
   function newItem(event) {
     setItemList(event.target.value);
   }
@@ -17,6 +20,16 @@ function App() {
     //Utilizando el operador spread se añade el elemento a la lista  inicial
     setTareas([...tareas, itemList]);
     setItemList(""); /// Limpiar el input después de agregar la tarea
+  }
+
+  function deleteElement(id) {
+    setTareas((prevItems) => {
+      return prevItems.filter(
+        (item, index)=>{
+          return index !== id;
+        }
+      )
+    });
   }
 
   return (
